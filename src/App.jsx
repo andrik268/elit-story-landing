@@ -179,7 +179,7 @@ function App() {
         >
           <span className="menu-line" />
           <span className="menu-line" />
-          <span className="menu-line menu-line-short" />
+          <span className="menu-line" />
         </button>
 
         <nav id="primary-navigation" className={`primary-nav${menuOpen ? " is-open" : ""}`}>
