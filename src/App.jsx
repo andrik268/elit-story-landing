@@ -119,6 +119,7 @@ const directions = [
   "Мангальные зоны",
   "Садовая мебель",
   "Металлоконструкции",
+  "Строительство и благоустройство",
 ];
 
 function SocialIcon({ label, href, icon }) {
@@ -169,7 +170,7 @@ function App() {
         </a>
 
         <button
-          className="menu-toggle"
+          className={`menu-toggle${menuOpen ? " is-open" : ""}`}
           type="button"
           aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
           aria-expanded={menuOpen}

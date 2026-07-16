@@ -228,27 +228,42 @@ p {
 
 .menu-toggle {
   display: none;
-  width: 32px;
-  height: 27px;
+  width: 26px;
+  height: 22px;
   grid-template-rows: repeat(3, 1px);
-  gap: 5px;
+  gap: 4px;
   align-content: center;
   justify-items: start;
-  padding: 4px 0;
+  padding: 0;
   color: var(--text);
   background: transparent;
+  transition: color 180ms ease, opacity 180ms ease;
+}
+
+.menu-toggle:hover {
+  color: var(--accent);
+}
+
+.menu-toggle:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 6px;
 }
 
 .menu-line {
   display: block;
-  width: 28px;
+  width: 23px;
   height: 1px;
   background: currentColor;
+  transition: width 180ms ease, transform 180ms ease;
 }
 
 .menu-line-short {
-  width: 19px;
+  width: 15px;
   justify-self: end;
+}
+
+.menu-toggle.is-open .menu-line-short {
+  width: 23px;
 }
 
 .hero {
@@ -416,6 +431,14 @@ p {
 .process-section,
 .contact-section {
   background: var(--bg);
+}
+
+.principles-section {
+  padding-bottom: clamp(64px, 7vw, 108px);
+}
+
+.works-section {
+  padding-top: clamp(64px, 7vw, 108px);
 }
 
 .principles-grid {
@@ -1084,8 +1107,11 @@ p {
   }
 
   .menu-socials .social-link {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
     padding: 0;
-    border-bottom: 0;
+    border: 1px solid var(--line);
   }
 
   .primary-nav {
@@ -1106,7 +1132,7 @@ p {
     display: flex;
   }
 
-  .primary-nav a {
+  .primary-nav > a {
     padding: 14px 0;
     border-bottom: 1px solid var(--line-soft);
   }
