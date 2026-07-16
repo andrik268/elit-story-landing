@@ -200,6 +200,10 @@ p {
   color: rgba(240, 236, 228, 0.75);
 }
 
+.menu-contact {
+  display: none;
+}
+
 .primary-nav a,
 .footer-socials a,
 .contact-links a,
@@ -219,27 +223,32 @@ p {
   padding: 12px 16px;
   color: var(--bg) !important;
   background: var(--accent);
+  border-radius: 5px;
 }
 
 .menu-toggle {
   display: none;
-  align-items: center;
-  gap: 7px;
-  padding: 0;
+  width: 32px;
+  height: 27px;
+  grid-template-rows: repeat(3, 1px);
+  gap: 5px;
+  align-content: center;
+  justify-items: start;
+  padding: 4px 0;
   color: var(--text);
   background: transparent;
 }
 
 .menu-line {
   display: block;
-  width: 17px;
+  width: 28px;
   height: 1px;
   background: currentColor;
 }
 
-.menu-label {
-  margin-left: 4px;
-  font-size: 0.76rem;
+.menu-line-short {
+  width: 19px;
+  justify-self: end;
 }
 
 .hero {
@@ -316,6 +325,7 @@ p {
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: -0.01em;
+  border-radius: 5px;
   transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease;
 }
 
@@ -775,17 +785,20 @@ p {
 }
 
 .contact-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 20px;
-  align-items: center;
+  display: grid;
+  gap: 16px;
   margin-top: 40px;
   color: var(--text);
   font-size: 0.84rem;
 }
 
-.contact-links span {
-  color: var(--muted);
+.contact-phone {
+  display: inline-block;
+  width: fit-content;
+  color: var(--text);
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
 }
 
 .contact-socials {
@@ -818,6 +831,14 @@ p {
   object-fit: contain;
 }
 
+.social-link img[src*="whatsapp-filled"] {
+  width: 22px;
+  height: 22px;
+  padding: 3px;
+  background: var(--text);
+  border-radius: 50%;
+}
+
 .lead-form {
   display: grid;
   gap: 11px;
@@ -845,7 +866,7 @@ p {
 
 .lead-form input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(224, 162, 115, 0.17);
+  box-shadow: 0 0 0 2px rgba(225, 194, 127, 0.2);
 }
 
 .lead-form .button {
@@ -877,21 +898,21 @@ p {
 .footer-logo-link {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   margin-bottom: 24px;
 }
 
 .footer-symbol {
   display: block;
-  width: 78px;
-  height: 78px;
+  width: 56px;
+  height: 56px;
   object-fit: cover;
   mix-blend-mode: screen;
 }
 
 .footer-wordmark {
   display: block;
-  width: 216px;
+  width: 166px;
   height: auto;
   mix-blend-mode: screen;
 }
@@ -1039,9 +1060,32 @@ p {
   }
 
   .menu-toggle {
+    display: grid;
+  }
+
+  .menu-contact {
+    display: grid;
+    gap: 16px;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+
+  .menu-phone {
+    color: var(--text);
+    font-size: 1.12rem;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+  }
+
+  .menu-socials {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .menu-socials .social-link {
+    padding: 0;
+    border-bottom: 0;
   }
 
   .primary-nav {

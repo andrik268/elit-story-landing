@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const phone = "89965333801";
 const phoneDigits = "79965333801";
+const phoneDisplay = "+7 996 533-38-01";
 const whatsappUrl = `https://wa.me/${phoneDigits}`;
 const telegramUrl = `https://t.me/+${phoneDigits}`;
 const vkUrl = "https://vk.com/estorykrd";
@@ -9,7 +9,7 @@ const maxUrl = "https://max.ru/";
 
 const socialLinks = [
   { label: "ВКонтакте", href: vkUrl, icon: "/assets/social/vk-official.svg" },
-  { label: "WhatsApp", href: whatsappUrl, icon: "/assets/social/whatsapp-official.svg" },
+  { label: "WhatsApp", href: whatsappUrl, icon: "/assets/social/whatsapp-filled.svg" },
   { label: "Telegram", href: telegramUrl, icon: "/assets/social/telegram-official-white.svg" },
   { label: "MAX", href: maxUrl, icon: "/assets/social/max-official-icon.svg" },
 ];
@@ -171,13 +171,14 @@ function App() {
         <button
           className="menu-toggle"
           type="button"
+          aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
           aria-expanded={menuOpen}
           aria-controls="primary-navigation"
           onClick={() => setMenuOpen((value) => !value)}
         >
           <span className="menu-line" />
           <span className="menu-line" />
-          <span className="menu-label">Меню</span>
+          <span className="menu-line menu-line-short" />
         </button>
 
         <nav id="primary-navigation" className={`primary-nav${menuOpen ? " is-open" : ""}`}>
@@ -186,6 +187,12 @@ function App() {
           <a href="#process" onClick={closeMenu}>Как работаем</a>
           <a href="#contacts" onClick={closeMenu}>Контакты</a>
           <a className="nav-cta" href="#contacts" onClick={closeMenu}>Рассчитать стоимость</a>
+          <div className="menu-contact">
+            <a className="menu-phone" href={`tel:+${phoneDigits}`} onClick={closeMenu}>{phoneDisplay}</a>
+            <div className="menu-socials" aria-label="Социальные сети">
+              {socialLinks.map((social) => <SocialIcon key={social.label} {...social} />)}
+            </div>
+          </div>
         </nav>
       </header>
 
@@ -348,7 +355,7 @@ function App() {
             <h2>Расскажите, какой должна быть ваша зона</h2>
             <p>Оставьте имя и телефон. Сообщение откроется в WhatsApp, где можно будет отправить фото участка и обсудить проект.</p>
             <div className="contact-links">
-              <a href={`tel:+${phoneDigits}`}>{phone}</a>
+              <a className="contact-phone" href={`tel:+${phoneDigits}`}>{phoneDisplay}</a>
               <div className="contact-socials" aria-label="Социальные сети">
                 {socialLinks.map((social) => <SocialIcon key={social.label} {...social} />)}
               </div>
