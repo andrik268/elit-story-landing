@@ -5,6 +5,14 @@ const phoneDigits = "79965333801";
 const whatsappUrl = `https://wa.me/${phoneDigits}`;
 const telegramUrl = `https://t.me/+${phoneDigits}`;
 const vkUrl = "https://vk.com/estorykrd";
+const maxUrl = "https://max.ru/";
+
+const socialLinks = [
+  { label: "ВКонтакте", href: vkUrl, icon: "/assets/social/vk-official.svg" },
+  { label: "WhatsApp", href: whatsappUrl, icon: "/assets/social/whatsapp-official.svg" },
+  { label: "Telegram", href: telegramUrl, icon: "/assets/social/telegram-official-white.svg" },
+  { label: "MAX", href: maxUrl, icon: "/assets/social/max-official-icon.svg" },
+];
 
 const photos = {
   hero: "/assets/photos/work/1776630894034.jpg",
@@ -78,7 +86,7 @@ const sketches = [
   "/assets/photos/sketches/1775458380507.jpg",
   "/assets/photos/sketches/1777137561438.jpg",
   "/assets/photos/sketches/editing_result_4bc42b5e4c9011f198467e168c9bf136_1.jpg",
-  "/assets/photos/sketches/editing_result_54a713f738fe11f1b4b646dd814b2db5_1.jpg",
+  "/assets/photos/sketches/editing_result_54a713f738fe11f1a5c83e58e9dfdf7d_1.jpg",
 ];
 
 const principles = [
@@ -112,6 +120,14 @@ const directions = [
   "Садовая мебель",
   "Металлоконструкции",
 ];
+
+function SocialIcon({ label, href, icon }) {
+  return (
+    <a className="social-link" href={href} target="_blank" rel="noreferrer" aria-label={label} title={label}>
+      <img src={icon} alt="" aria-hidden="true" />
+    </a>
+  );
+}
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -148,8 +164,8 @@ function App() {
     <div className="site-shell">
       <header className="site-header">
         <a className="brand" href="#top" onClick={closeMenu} aria-label="ЭлитСтори, на главную">
-          <span className="brand-mark">ЭС</span>
-          <span className="brand-name">ЭлитСтори</span>
+          <img className="brand-symbol" src="/assets/brand/elit-story-mark.png" alt="" aria-hidden="true" />
+          <img className="brand-wordmark" src="/assets/brand/elit-story-lockup.png" alt="ЭлитСтори" />
         </a>
 
         <button
@@ -333,10 +349,9 @@ function App() {
             <p>Оставьте имя и телефон. Сообщение откроется в WhatsApp, где можно будет отправить фото участка и обсудить проект.</p>
             <div className="contact-links">
               <a href={`tel:+${phoneDigits}`}>{phone}</a>
-              <a href={whatsappUrl} target="_blank" rel="noreferrer">WhatsApp</a>
-              <a href={telegramUrl} target="_blank" rel="noreferrer">Telegram</a>
-              <a href={vkUrl} target="_blank" rel="noreferrer">VK</a>
-              <span>MAX: {phone}</span>
+              <div className="contact-socials" aria-label="Социальные сети">
+                {socialLinks.map((social) => <SocialIcon key={social.label} {...social} />)}
+              </div>
             </div>
           </div>
           <form className="lead-form" onSubmit={handleFormSubmit} noValidate>
@@ -365,17 +380,15 @@ function App() {
 
       <footer className="site-footer">
         <div>
-          <a className="brand footer-brand" href="#top">
-            <span className="brand-mark">ЭС</span>
-            <span className="brand-name">ЭлитСтори</span>
+          <a className="footer-logo-link" href="#top" aria-label="ЭлитСтори, на главную">
+            <img className="footer-symbol" src="/assets/brand/elit-story-mark.png" alt="" aria-hidden="true" />
+            <img className="footer-wordmark" src="/assets/brand/elit-story-lockup.png" alt="ЭлитСтори. Создавай свою историю!" />
           </a>
           <p>Мангальные зоны под заказ. Краснодарский край.</p>
         </div>
         <div className="footer-right">
-          <div className="footer-socials">
-            <a href={vkUrl} target="_blank" rel="noreferrer">VK</a>
-            <a href={whatsappUrl} target="_blank" rel="noreferrer">WhatsApp</a>
-            <a href={telegramUrl} target="_blank" rel="noreferrer">Telegram</a>
+          <div className="footer-socials" aria-label="Социальные сети">
+            {socialLinks.map((social) => <SocialIcon key={social.label} {...social} />)}
           </div>
           <small>Самозанятый, ИНН 231298496001</small>
         </div>
