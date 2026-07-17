@@ -112,14 +112,46 @@ const process = [
 ];
 
 const directions = [
-  "Капсульные дома",
-  "Модульные бани",
-  "Купели",
-  "Джакузи",
-  "Мангальные зоны",
-  "Садовая мебель",
-  "Металлоконструкции",
-  "Строительство и благоустройство",
+  {
+    title: "Капсульные дома",
+    src: "/assets/photos/sketches/1775458380507.jpg",
+    alt: "Проект загородного пространства с мангальной зоной",
+  },
+  {
+    title: "Модульные бани",
+    src: "/assets/photos/sketches/1777137561438.jpg",
+    alt: "Крытая мангальная зона с рабочей поверхностью",
+  },
+  {
+    title: "Купели",
+    src: "/assets/photos/work/1782584598939.jpg",
+    alt: "Высокий мангал с печью для загородного участка",
+  },
+  {
+    title: "Джакузи",
+    src: "/assets/photos/work/1779455370766.jpg",
+    alt: "Мангальная зона с вытяжным колпаком",
+  },
+  {
+    title: "Мангальные зоны",
+    src: "/assets/photos/work/1776630894034.jpg",
+    alt: "Мангальная зона под заказ",
+  },
+  {
+    title: "Садовая мебель",
+    src: "/assets/photos/work/editing_result_aeb230d53a6a11f188c03e58e9dfdf7d_1.jpg",
+    alt: "Уличная кухня с рабочей поверхностью",
+  },
+  {
+    title: "Металлоконструкции",
+    src: "/assets/photos/work/editing_result_bd129942725411f1a4fe6ab37608c299_1.jpg",
+    alt: "Металлическая конструкция мангальной зоны",
+  },
+  {
+    title: "Строительство и благоустройство",
+    src: "/assets/photos/work/editing_result_5f032aaa725411f1bd855219c512ffb0_1.jpg",
+    alt: "Проект благоустройства с мангальной зоной",
+  },
 ];
 
 function SocialIcon({ label, href, icon }) {
@@ -319,10 +351,21 @@ function App() {
           </div>
           <div className="directions-grid">
             {directions.map((direction, index) => (
-              <div className="direction-item" key={direction}>
-                <span>0{index + 1}</span>
-                <strong>{direction}</strong>
-              </div>
+              <button
+                className="direction-item"
+                key={direction.title}
+                type="button"
+                onClick={() => setSelectedImage({ src: direction.src, title: direction.title })}
+              >
+                <span className="direction-number">{String(index + 1).padStart(2, "0")}</span>
+                <span className="direction-body">
+                  <strong>{direction.title}</strong>
+                  <span className="direction-photo">
+                    <img src={direction.src} alt={direction.alt} loading="lazy" />
+                    <span className="direction-photo-label">Фото</span>
+                  </span>
+                </span>
+              </button>
             ))}
           </div>
           <div className="sketch-strip">
