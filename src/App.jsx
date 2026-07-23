@@ -216,11 +216,6 @@ const directions = [
     alt: "Джакузи для загородного участка",
   },
   {
-    title: "Мангальные зоны",
-    src: "/assets/photos/work/mkp.jpg",
-    alt: "Мангальная зона под заказ",
-  },
-  {
     title: "Садовая мебель",
     src: "/assets/photos/work/editing_result_aeb230d53a6a11f188c03e58e9dfdf7d_1.jpg",
     alt: "Садовая мебель для зоны отдыха",
@@ -229,11 +224,6 @@ const directions = [
     title: "Металлоконструкции",
     src: "/assets/photos/work/editing_result_bd129942725411f1a4fe6ab37608c299_1.jpg",
     alt: "Металлическая конструкция мангальной зоны",
-  },
-  {
-    title: "Строительство и благоустройство",
-    src: "/assets/photos/work/editing_result_5f032aaa725411f1bd855219c512ffb0_1.jpg",
-    alt: "Проект благоустройства участка",
   },
 ];
 
@@ -491,9 +481,9 @@ function App() {
 
         <section className="section directions-section">
           <div className="directions-heading">
-            <p className="eyebrow">Больше, чем мангальные зоны</p>
-            <h2>Пространства для загородной жизни</h2>
-            <p>Нажмите на направление, чтобы посмотреть пример.</p>
+            <p className="eyebrow">Дополнительные направления</p>
+            <h2>Что ещё можем изготовить</h2>
+            <p>Помимо мангальных зон, развиваем отдельные производственные направления. Нажмите на карточку, чтобы посмотреть пример.</p>
           </div>
           <div className="directions-grid">
             {directions.map((direction, index) => (
