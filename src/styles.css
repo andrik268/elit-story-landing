@@ -1581,7 +1581,15 @@ p {
   .works-grid {
     margin-top: 40px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    align-items: start;
     gap: 26px 10px;
+  }
+
+  .work-card {
+    display: flex;
+    align-self: start;
+    flex-direction: column;
   }
 
   .work-card-feature {
@@ -1589,11 +1597,25 @@ p {
   }
 
   .work-card-feature .work-image-wrap {
-    min-height: 460px;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
   }
 
   .work-card-standard .work-image-wrap {
-    min-height: 190px;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 3 / 4;
+  }
+
+  .work-caption {
+    min-height: 58px;
+    padding: 12px 2px 0;
+  }
+
+  .work-card-feature .work-caption {
+    min-height: 0;
+    padding-bottom: 4px;
   }
 
   .work-caption strong {
