@@ -1024,6 +1024,113 @@ p {
   box-shadow: 0 0 0 2px rgba(22, 137, 232, 0.18);
 }
 
+.messenger-picker {
+  display: grid;
+  gap: 10px;
+  margin: 7px 0 2px;
+  padding: 0;
+  border: 0;
+}
+
+.messenger-picker legend {
+  padding: 0;
+  color: var(--text);
+  font-size: 0.76rem;
+  line-height: 1.4;
+}
+
+.messenger-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.messenger-option {
+  position: relative;
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  gap: 7px;
+  margin-top: 0;
+  padding: 8px 9px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  line-height: 1.15;
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.messenger-option:hover {
+  border-color: var(--green);
+  transform: translateY(-1px);
+}
+
+.messenger-option.is-selected {
+  background: rgba(22, 184, 78, 0.08);
+  border-color: var(--green);
+}
+
+.messenger-option-control {
+  position: absolute;
+  width: 1px !important;
+  height: 1px !important;
+  min-height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0 !important;
+}
+
+.messenger-option-control:focus-visible + .messenger-check {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.messenger-check {
+  display: grid;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  place-items: center;
+  color: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.messenger-option.is-selected .messenger-check {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.messenger-option.is-selected .messenger-check::after {
+  content: "✓";
+}
+
+.messenger-option img {
+  width: 21px;
+  height: 21px;
+  flex: 0 0 21px;
+  object-fit: contain;
+}
+
+.messenger-option img[src*="whatsapp-filled"] {
+  padding: 2px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.messenger-option img[src*="telegram"],
+.messenger-option img[src*="max-official"] {
+  filter: invert(1);
+}
+
 .lead-form .button {
   width: 100%;
   margin-top: 16px;
@@ -1038,6 +1145,10 @@ p {
 
 .form-state.is-visible {
   opacity: 1;
+}
+
+.form-state.is-error {
+  color: #c43d49;
 }
 
 .site-footer {

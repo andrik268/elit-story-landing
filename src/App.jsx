@@ -14,6 +14,12 @@ const socialLinks = [
   { label: "MAX", href: maxUrl, icon: "/assets/social/max-official-icon.svg" },
 ];
 
+const messengerOptions = [
+  { value: "whatsapp", label: "WhatsApp", href: whatsappUrl, icon: "/assets/social/whatsapp-filled.svg" },
+  { value: "telegram", label: "Telegram", href: telegramUrl, icon: "/assets/social/telegram-official-white.svg" },
+  { value: "max", label: "MAX", href: maxUrl, icon: "/assets/social/max-official-icon.svg" },
+];
+
 const photos = {
   hero: "/assets/photos/work/yandex/main-photo.jpg",
   about: "/assets/photos/work/yandex/mkp-photo.jpg",
@@ -177,6 +183,14 @@ const process = [
   { title: "Доставляем и устанавливаем", text: "Привозим готовую зону и устанавливаем на участке." },
 ];
 
+const getMessengerUrl = (value, message) => {
+  const encodedMessage = encodeURIComponent(message);
+
+  if (value === "whatsapp") return `${whatsappUrl}?text=${encodedMessage}`;
+  if (value === "telegram") return `${telegramUrl}?text=${encodedMessage}`;
+  return maxUrl;
+};
+
 function SocialIcon({ label, href, icon }) {
   return (
     <a className="social-link" href={href} target="_blank" rel="noreferrer" aria-label={label} title={label}>
@@ -189,7 +203,8 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [form, setForm] = useState({ name: "", phone: "" });
-  const [formState, setFormState] = useState("");
+  const [messenger, setMessenger] = useState("");
+  const [formState, setFormState] = useState({ message: "", type: "" });
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -200,19 +215,27 @@ function App() {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     if (!form.name.trim() || !form.phone.trim()) {
-      setFormState("Заполните имя и телефон");
+      setFormState({ message: "Заполните имя и телефон", type: "error" });
       return;
     }
 
+    if (!messenger) {
+      setFormState({ message: "Выберите мессенджер для связи", type: "error" });
+      return;
+    }
+
+    const selectedMessenger = messengerOptions.find((option) => option.value === messenger);
     const message = [
       "Здравствуйте! Хочу рассчитать стоимость мангальной зоны.",
       `Имя: ${form.name.trim()}`,
       `Телефон: ${form.phone.trim()}`,
+      `Мессенджер для связи: ${selectedMessenger.label}`,
     ].join("\n");
 
-    window.open(`${whatsappUrl}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
-    setFormState("Сообщение подготовлено в WhatsApp");
+    window.open(getMessengerUrl(messenger, message), "_blank", "noopener,noreferrer");
+    setFormState({ message: `Сообщение подготовлено в ${selectedMessenger.label}`, type: "success" });
     setForm({ name: "", phone: "" });
+    setMessenger("");
   };
 
   const requestCatalog = () => {
@@ -432,7 +455,7 @@ function App() {
           <div className="contact-copy">
             <p className="eyebrow">Рассчитать стоимость</p>
             <h2>Обсудим вашу мангальную зону</h2>
-            <p>Оставьте имя и телефон. Сообщение откроется в WhatsApp, где можно отправить фото участка и уточнить детали.</p>
+            <p>Оставьте имя и телефон и выберите удобный мессенджер для связи с менеджером.</p>
             <div className="contact-links">
               <a className="contact-phone" href={`tel:+${phoneDigits}`}>{phoneDisplay}</a>
               <div className="contact-socials" aria-label="Социальные сети">
@@ -449,7 +472,7 @@ function App() {
               onChange={(event) => setForm({ ...form, name: event.target.value })}
               autoComplete="name"
             />
-            <label htmlFor="phone">Телефон</label>
+            <label htmlFor="phone">Номер тел.</label>
             <input
               id="phone"
               name="phone"
@@ -458,8 +481,28 @@ function App() {
               onChange={(event) => setForm({ ...form, phone: event.target.value })}
               autoComplete="tel"
             />
+            <fieldset className="messenger-picker">
+              <legend>Для связи с менеджером в мессенджере поставьте галочку</legend>
+              <div className="messenger-options">
+                {messengerOptions.map((option) => (
+                  <label className={`messenger-option${messenger === option.value ? " is-selected" : ""}`} key={option.value}>
+                    <input
+                      className="messenger-option-control"
+                      type="radio"
+                      name="messenger"
+                      value={option.value}
+                      checked={messenger === option.value}
+                      onChange={(event) => setMessenger(event.target.value)}
+                    />
+                    <span className="messenger-check" aria-hidden="true" />
+                    <img src={option.icon} alt="" aria-hidden="true" />
+                    <span>{option.label}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
             <button className="button button-primary" type="submit">Рассчитать стоимость</button>
-            <small className={formState ? "form-state is-visible" : "form-state"} aria-live="polite">{formState}</small>
+            <small className={`form-state${formState.message ? " is-visible" : ""}${formState.type ? ` is-${formState.type}` : ""}`} aria-live="polite">{formState.message}</small>
           </form>
         </section>
       </main>
