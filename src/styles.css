@@ -166,23 +166,20 @@ p {
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
-  gap: 8px;
-  padding: 5px 9px;
-  background: var(--text);
-  border-radius: 5px;
+  padding: 5px 2px;
 }
 
-.brand-symbol {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  mix-blend-mode: screen;
+.brand-name,
+.footer-brand-name {
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  letter-spacing: -0.065em;
+  line-height: 1;
 }
 
-.brand-wordmark {
-  width: 126px;
-  height: auto;
-  mix-blend-mode: screen;
+.brand-name {
+  font-size: 1.72rem;
 }
 
 .primary-nav {
@@ -1164,24 +1161,12 @@ p {
 .footer-logo-link {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
   margin-bottom: 22px;
-  padding: 7px 10px;
-  background: var(--text);
-  border-radius: 5px;
+  padding: 0;
 }
 
-.footer-symbol {
-  width: 44px;
-  height: 44px;
-  object-fit: cover;
-  mix-blend-mode: screen;
-}
-
-.footer-wordmark {
-  width: 142px;
-  height: auto;
-  mix-blend-mode: screen;
+.footer-brand-name {
+  font-size: 2rem;
 }
 
 .site-footer p,
@@ -1460,16 +1445,11 @@ p {
   }
 
   .brand {
-    padding: 4px 7px;
+    padding: 4px 2px;
   }
 
-  .brand-symbol {
-    width: 35px;
-    height: 35px;
-  }
-
-  .brand-wordmark {
-    width: 112px;
+  .brand-name {
+    font-size: 1.42rem;
   }
 
   .primary-nav .nav-cta {

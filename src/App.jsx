@@ -247,8 +247,7 @@ function App() {
     <div className="site-shell">
       <header className="site-header">
         <a className="brand" href="#top" onClick={closeMenu} aria-label="ЭлитСтори, на главную">
-          <img className="brand-symbol" src="/assets/brand/elit-story-mark.png" alt="" aria-hidden="true" />
-          <img className="brand-wordmark" src="/assets/brand/elit-story-lockup.png" alt="ЭлитСтори" />
+          <span className="brand-name">ЭлитСтори</span>
         </a>
 
         <button
@@ -510,8 +509,7 @@ function App() {
       <footer className="site-footer">
         <div>
           <a className="footer-logo-link" href="#top" aria-label="ЭлитСтори, на главную">
-            <img className="footer-symbol" src="/assets/brand/elit-story-mark.png" alt="" aria-hidden="true" />
-            <img className="footer-wordmark" src="/assets/brand/elit-story-lockup.png" alt="ЭлитСтори. Создавай свою историю!" />
+            <span className="footer-brand-name">ЭлитСтори</span>
           </a>
           <p>Мангальные зоны под заказ. Доставка по всей России</p>
         </div>
