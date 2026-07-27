@@ -17,25 +17,25 @@ const socialLinks = [
 const photos = {
   hero: "/assets/photos/work/main-client.jpg",
   about: "/assets/photos/work/1779528643822.jpg",
-  components: "/assets/photos/work/mkp.jpg",
+  components: "/assets/photos/components/everything-zone.jpg",
 };
 
 const works = [
   {
     src: "/assets/photos/work/mkp.jpg",
-    title: "Мангальная зона под заказ",
+    title: "Мангальная зона с Коптильней, Жаровней, Печью.",
     text: "Мангал, печь, коптильня и вытяжка в едином комплексе.",
     size: "feature",
   },
   {
     src: "/assets/photos/work/1776632973773.jpg",
-    title: "Комплекс с печью",
+    title: "Комплекс с Жаровней и Печью.",
     text: "Индивидуальная комплектация под участок заказчика.",
     size: "standard",
   },
   {
     src: "/assets/photos/work/1779454017808.jpg",
-    title: "Гриль-зона с хранением",
+    title: "Гриль зона с тандыром",
     text: "Рабочая зона и места для инвентаря.",
     size: "standard",
   },
@@ -47,7 +47,7 @@ const works = [
   },
   {
     src: "/assets/photos/work/editing_result_40ea4cc643fb11f19b45f22bb2ed8277_1.jpg",
-    title: "Проект для частного дома",
+    title: "Мангалы с крышей",
     text: "Зона встроена в архитектуру двора и террасы.",
     size: "standard",
   },
@@ -60,7 +60,7 @@ const components = [
     text: "Жаровня с откидной крышкой и печкой для казана.",
   },
   {
-    src: "/assets/photos/components/stove-cast-iron.jpg",
+    src: "/assets/photos/components/stove-kazan-door.jpg",
     label: "Печка",
     text: "Чугунные кольца, дверка для топки и поддувало.",
   },
@@ -326,6 +326,7 @@ function App() {
             <div className="hero-media-caption">
               <span>Индивидуальный проект</span>
               <span>Изготовлено ЭлитСтори</span>
+              <strong>Производство мангальных зон г. Краснодар- Доставка по всей России</strong>
             </div>
           </div>
         </section>
