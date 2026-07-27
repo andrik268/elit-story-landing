@@ -96,39 +96,6 @@ const components = [
   },
 ];
 
-const equipment = [
-  {
-    src: "/assets/photos/equipment/grill-thermometer.jpg",
-    title: "Жаровня с термодатчиком",
-    text: "Контроль температуры во время приготовления.",
-  },
-  {
-    src: "/assets/photos/equipment/hot-zone-frame.jpg",
-    title: "Каркас горячей зоны",
-    text: "Основа для индивидуальной комплектации.",
-  },
-  {
-    src: "/assets/photos/equipment/stainless-countertop.jpg",
-    title: "Столешница из нержавеющей стали",
-    text: "Стойкая к нагреву рабочая поверхность.",
-  },
-  {
-    src: "/assets/photos/equipment/oak-cabinet.jpg",
-    title: "Тумба с дубовой столешницей",
-    text: "Хранение и натуральная рабочая поверхность.",
-  },
-  {
-    src: "/assets/photos/equipment/start-sandwich.jpg",
-    title: "Старт-сэндвич",
-    text: "Безопасный переход дымохода.",
-  },
-  {
-    src: "/assets/photos/equipment/chimney-cap.jpg",
-    title: "Труба сэндвич с зонтом",
-    text: "Защита вентиляционного канала от осадков.",
-  },
-];
-
 const projectBlocks = [
   {
     title: "Мангальные зоны под навес",
@@ -403,24 +370,6 @@ function App() {
                 </button>
               ))}
             </div>
-          </div>
-        </section>
-
-        <section className="section equipment-section" id="equipment">
-          <div className="section-heading compact-heading">
-            <h2>Дополнительное оборудование</h2>
-            <p>Элементы, которые расширяют возможности горячей зоны.</p>
-          </div>
-          <div className="equipment-track">
-            {equipment.map((item) => (
-              <button className="equipment-card" type="button" key={item.title} onClick={() => openImage(item.src, item.title)}>
-                <img src={item.src} alt={item.title} loading="lazy" />
-                <span>
-                  <strong>{item.title}</strong>
-                  <small>{item.text}</small>
-                </span>
-              </button>
-            ))}
           </div>
         </section>
 
