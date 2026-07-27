@@ -311,7 +311,7 @@ function App() {
           <div className="principles-grid">
             {principles.map((principle, index) => (
               <article className="principle" key={principle.title}>
-                <span className="principle-index">0{index + 1}</span>
+                <span className={`principle-shape principle-shape-${index + 1}`} aria-hidden="true" />
                 <h3>{principle.title}</h3>
                 <p>{principle.text}</p>
               </article>
@@ -442,7 +442,7 @@ function App() {
           <div className="process-grid">
             {process.map((item, index) => (
               <article className="process-item" key={item.title}>
-                <span className="process-number">0{index + 1}</span>
+                <span className={`process-shape process-shape-${index + 1}`} aria-hidden="true" />
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
               </article>
