@@ -489,68 +489,50 @@ p {
 }
 
 .principle-shape-2 {
-  background: var(--accent);
-  transform: rotate(45deg) scale(0.84);
+  background: var(--green);
+  transform: scale(0.94);
 }
 
 .principle-shape-3 {
-  background: var(--text);
-  transform: rotate(45deg) scale(0.72);
+  background: var(--green);
+  transform: scale(0.84);
 }
 
 .process-shape {
   width: 42px;
   height: 42px;
   margin-bottom: 32px;
-  border: 2px solid var(--accent);
-  border-radius: 50%;
+  border: 0;
+  border-radius: 0;
 }
 
 .process-shape::before {
   position: absolute;
-  inset: 9px;
+  inset: 0;
   content: "";
   background: var(--green);
-  clip-path: polygon(50% 0%, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0% 50%, 40% 40%);
+  clip-path: polygon(50% 0%, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0% 50%, 38% 38%);
 }
 
 .process-shape-1 {
-  border-color: var(--accent);
+  transform: rotate(45deg) scale(0.96);
 }
 
 .process-shape-2 {
-  border-color: var(--green);
-  border-radius: 6px;
-  transform: rotate(45deg);
-}
-
-.process-shape-2::before {
-  inset: 10px;
-  background: var(--accent);
-  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  transform: rotate(45deg) scale(0.96);
 }
 
 .process-shape-3 {
-  border-color: var(--text);
-  border-radius: 50%;
+  transform: rotate(45deg) scale(0.96);
 }
 
 .process-shape-3::before {
-  inset: 11px;
-  background: var(--text);
+  inset: 0;
+  background: var(--green);
 }
 
 .process-shape-4 {
-  border-color: var(--accent);
-  border-radius: 10px;
-}
-
-.process-shape-4::before {
-  inset: 8px;
-  border: 2px solid var(--green);
-  border-radius: 4px;
-  background: transparent;
-  clip-path: none;
+  transform: rotate(45deg) scale(0.9);
 }
 
 .principle p {
