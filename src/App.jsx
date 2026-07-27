@@ -132,13 +132,6 @@ const reviews = [
   "/assets/photos/reviews/review-06.jpg",
 ];
 
-const sketches = [
-  "/assets/photos/sketches/1775458380507.jpg",
-  "/assets/photos/sketches/1777137561438.jpg",
-  "/assets/photos/sketches/editing_result_4bc42b5e4c9011f198467e168c9bf136_1.jpg",
-  "/assets/photos/sketches/editing_result_54a713f738fe11f1a5c83e58e9dfdf7d_1.jpg",
-];
-
 const principles = [
   {
     title: "Гарантированное качество",
@@ -159,39 +152,6 @@ const process = [
   { title: "Заключаем договор", text: "Фиксируем стоимость и условия работы." },
   { title: "Изготавливаем", text: "Собираем проект и контролируем каждую деталь." },
   { title: "Доставляем и устанавливаем", text: "Привозим готовую зону и устанавливаем на участке." },
-];
-
-const directions = [
-  {
-    title: "Капсульные дома",
-    src: "/assets/photos/sketches/1775458380507.jpg",
-    alt: "Проект капсульного дома",
-  },
-  {
-    title: "Модульные бани",
-    src: "/assets/photos/sketches/1777137561438.jpg",
-    alt: "Проект модульной бани",
-  },
-  {
-    title: "Купели",
-    src: "/assets/photos/work/1782584598939.jpg",
-    alt: "Купель для загородного участка",
-  },
-  {
-    title: "Джакузи",
-    src: "/assets/photos/work/1779455370766.jpg",
-    alt: "Джакузи для загородного участка",
-  },
-  {
-    title: "Садовая мебель",
-    src: "/assets/photos/work/editing_result_aeb230d53a6a11f188c03e58e9dfdf7d_1.jpg",
-    alt: "Садовая мебель для зоны отдыха",
-  },
-  {
-    title: "Металлоконструкции",
-    src: "/assets/photos/work/editing_result_bd129942725411f1a4fe6ab37608c299_1.jpg",
-    alt: "Металлическая конструкция мангальной зоны",
-  },
 ];
 
 function SocialIcon({ label, href, icon }) {
@@ -424,37 +384,6 @@ function App() {
             {reviews.map((src, index) => (
               <button className="review-card" type="button" key={src} onClick={() => openImage(src, `Отзыв клиента ${index + 1}`)}>
                 <img src={src} alt={`Отзыв клиента ${index + 1}`} loading="lazy" />
-              </button>
-            ))}
-          </div>
-        </section>
-
-        <section className="section directions-section">
-          <div className="directions-heading">
-            <p className="eyebrow">Дополнительные направления</p>
-            <h2>Что ещё можем изготовить</h2>
-            <p>Помимо мангальных зон, развиваем отдельные производственные направления. Нажмите на карточку, чтобы посмотреть пример.</p>
-          </div>
-          <div className="directions-grid">
-            {directions.map((direction, index) => (
-              <button
-                className="direction-item"
-                key={direction.title}
-                type="button"
-                onClick={() => openImage(direction.src, direction.title)}
-              >
-                <span className="direction-number">{String(index + 1).padStart(2, "0")}</span>
-                <span className="direction-photo">
-                  <img src={direction.src} alt={direction.alt} loading="lazy" />
-                </span>
-                <strong>{direction.title}</strong>
-              </button>
-            ))}
-          </div>
-          <div className="sketch-strip">
-            {sketches.map((src, index) => (
-              <button type="button" key={src} onClick={() => openImage(src, `Пример проекта ${index + 1}`)}>
-                <img src={src} alt={`Пример проекта ${index + 1}`} loading="lazy" />
               </button>
             ))}
           </div>
