@@ -513,7 +513,7 @@ function App() {
             <img className="footer-symbol" src="/assets/brand/elit-story-mark.png" alt="" aria-hidden="true" />
             <img className="footer-wordmark" src="/assets/brand/elit-story-lockup.png" alt="ЭлитСтори. Создавай свою историю!" />
           </a>
-          <p>Мангальные зоны под заказ. Краснодарский край.</p>
+          <p>Мангальные зоны под заказ. Доставка по всей России</p>
         </div>
         <div className="footer-right">
           <div className="footer-socials" aria-label="Социальные сети">
