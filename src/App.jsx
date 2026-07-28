@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const phoneDigits = "79965333801";
 const phoneDisplay = "+7 996 533 38 01";
@@ -15,7 +15,7 @@ const socialLinks = [
 ];
 
 const messengerOptions = [
-  { value: "whatsapp", label: "WhatsApp", href: whatsappUrl, icon: "/assets/social/whatsapp-filled.svg" },
+  { value: "whatsapp", label: "WhatsApp", href: whatsappUrl, icon: "/assets/social/whatsapp-official.svg" },
   { value: "telegram", label: "Telegram", href: telegramUrl, icon: "/assets/social/telegram-official-white.svg" },
   { value: "max", label: "MAX", href: maxUrl, icon: "/assets/social/max-official-icon.svg" },
 ];
@@ -132,16 +132,19 @@ const projectBlocks = [
 const videos = [
   {
     src: "/assets/videos/main-zone.mp4",
+    poster: "/assets/videos/main-zone-poster.jpg",
     title: "Готовая мангальная зона",
     variant: "featured",
   },
   {
     src: "/assets/videos/detail-zone.mp4",
+    poster: "/assets/videos/detail-zone-poster.jpg",
     title: "Детали и комплектация",
     variant: "portrait",
   },
   {
     src: "/assets/videos/finished-zone.mp4",
+    poster: "/assets/videos/finished-zone-poster.jpg",
     title: "Зона в работе",
     variant: "portrait",
   },
@@ -223,6 +226,35 @@ function App() {
   const [form, setForm] = useState({ name: "", phone: "" });
   const [messenger, setMessenger] = useState("");
   const [formState, setFormState] = useState({ message: "", type: "" });
+
+  useEffect(() => {
+    const revealNodes = [...document.querySelectorAll("[data-reveal]")];
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      revealNodes.forEach((node) => node.classList.add("is-visible"));
+      return undefined;
+    }
+
+    document.documentElement.classList.add("reveal-ready");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+    );
+
+    revealNodes.forEach((node) => observer.observe(node));
+
+    return () => {
+      observer.disconnect();
+      document.documentElement.classList.remove("reveal-ready");
+    };
+  }, []);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -323,13 +355,13 @@ function App() {
         </section>
 
         <section className="section principles-section" aria-label="Преимущества">
-          <div className="principles-intro">
+          <div className="principles-intro" data-reveal>
             <h2>От идеи до готовой зоны</h2>
             <p>Проектируем под участок и привычный сценарий готовки.</p>
           </div>
           <div className="principles-grid">
             {principles.map((principle, index) => (
-              <article className="principle" key={principle.title}>
+              <article className="principle" key={principle.title} data-reveal>
                 <span className={`principle-shape principle-shape-${index + 1}`} aria-hidden="true" />
                 <h3>{principle.title}</h3>
                 <p>{principle.text}</p>
@@ -339,7 +371,7 @@ function App() {
         </section>
 
         <section className="section works-section" id="works">
-          <div className="section-heading">
+          <div className="section-heading" data-reveal>
             <p className="eyebrow">Наши работы</p>
             <h2>Проекты, собранные под конкретный участок</h2>
             <p>Размеры, наполнение и внешний вид подбираем индивидуально.</p>
@@ -351,9 +383,10 @@ function App() {
                 key={work.src}
                 type="button"
                 onClick={() => openImage(work.src, work.title)}
+                data-reveal
               >
                 <span className="work-image-wrap">
-                  <img src={work.src} alt={work.title} loading={index < 2 ? "eager" : "lazy"} />
+                  <img src={work.src} alt={work.title} loading={index < 2 ? "eager" : "lazy"} decoding="async" />
                 </span>
                 <span className="work-caption">
                   <strong>{work.title}</strong>
@@ -365,16 +398,16 @@ function App() {
         </section>
 
         <section className="section video-section" id="video">
-          <div className="section-heading">
+          <div className="section-heading" data-reveal>
             <p className="eyebrow">Видео наших работ</p>
             <h2>Результат можно увидеть вживую</h2>
             <p>Показываем готовые зоны, детали и качество исполнения в реальных видео.</p>
           </div>
           <div className="video-showcase">
             {videos.map((video) => (
-              <figure className={`video-card video-card-${video.variant}`} key={video.src}>
+              <figure className={`video-card video-card-${video.variant}`} key={video.src} data-reveal>
                 <div className="video-frame">
-                  <video controls playsInline preload="metadata" src={video.src} />
+                  <video controls playsInline preload="none" poster={video.poster} src={video.src} />
                 </div>
                 <figcaption>{video.title}</figcaption>
               </figure>
@@ -383,13 +416,13 @@ function App() {
         </section>
 
         <section className="section components-section" id="components">
-          <div className="section-heading compact-heading">
+          <div className="section-heading compact-heading" data-reveal>
             <h2>Функциональность без лишнего</h2>
             <p>Соберите комплектацию под то, как вы привыкли готовить.</p>
           </div>
           <div className="component-stage">
-            <button className="component-feature" type="button" onClick={() => openImage(photos.components, "Полная комплектация мангальной зоны")}>
-              <img src={photos.components} alt="Полная комплектация мангальной зоны" loading="lazy" />
+            <button className="component-feature" type="button" onClick={() => openImage(photos.components, "Полная комплектация мангальной зоны")} data-reveal>
+              <img src={photos.components} alt="Полная комплектация мангальной зоны" loading="lazy" decoding="async" />
               <span>
                 <small>Материалы и детали</small>
                 <strong>Всё необходимое в одной зоне</strong>
@@ -402,8 +435,9 @@ function App() {
                   type="button"
                   key={component.label}
                   onClick={() => openImage(component.src, component.label)}
+                  data-reveal
                 >
-                  <img src={component.src} alt={component.label} loading="lazy" />
+                  <img src={component.src} alt={component.label} loading="lazy" decoding="async" />
                   <span className="component-card-copy">
                     <small>{String(index + 1).padStart(2, "0")}</small>
                     <strong>{component.label}</strong>
@@ -416,10 +450,10 @@ function App() {
         </section>
 
         <section className="section about-section" id="about">
-          <div className="about-media">
-            <img src={photos.about} alt="Готовая мангальная зона ЭлитСтори" loading="lazy" />
+          <div className="about-media" data-reveal>
+            <img src={photos.about} alt="Готовая мангальная зона ЭлитСтори" loading="lazy" decoding="async" />
           </div>
-          <div className="about-copy">
+          <div className="about-copy" data-reveal>
             <h2>Делаем двор центром притяжения</h2>
             <p>Компания «ЭлитСтори» создаёт стильные и функциональные мангальные зоны. Мы проектируем места для готовки, отдыха и встреч с близкими.</p>
             <a className="text-link" href={vkUrl} target="_blank" rel="noreferrer">Посмотреть группу ВКонтакте <span>↗</span></a>
@@ -427,14 +461,14 @@ function App() {
         </section>
 
         <section className="section project-types-section" id="project-types">
-          <div className="section-heading">
+          <div className="section-heading" data-reveal>
             <p className="eyebrow">Дизайн-проекты</p>
             <h2>Мангальные зоны, которые мы выполняем</h2>
             <p>В каждой категории показываем по шесть проектов. Этого достаточно, чтобы увидеть разнообразие решений без перегрузки страницы.</p>
           </div>
           <div className="project-types-grid">
             {projectBlocks.map((project, projectIndex) => (
-              <article className={`project-type${projectIndex % 2 ? " is-reversed" : ""}`} key={project.title}>
+              <article className={`project-type${projectIndex % 2 ? " is-reversed" : ""}`} key={project.title} data-reveal>
                 <div className="project-type-heading">
                   <span className="project-type-number">0{projectIndex + 1}</span>
                   <h3>{project.title}</h3>
@@ -448,7 +482,7 @@ function App() {
                       key={src}
                       onClick={() => openImage(src, project.title)}
                     >
-                      <img src={src} alt={`${project.title}, пример ${photoIndex + 1}`} loading="lazy" />
+                      <img src={src} alt={`${project.title}, пример ${photoIndex + 1}`} loading="lazy" decoding="async" />
                     </button>
                   ))}
                 </div>
@@ -458,27 +492,27 @@ function App() {
         </section>
 
         <section className="section reviews-section" id="reviews">
-          <div className="reviews-heading">
+          <div className="reviews-heading" data-reveal>
             <h2>Отзывы клиентов</h2>
             <p>Реальные сообщения и оценки после получения заказа.</p>
           </div>
           <div className="reviews-track">
             {reviews.map((src, index) => (
-              <button className="review-card" type="button" key={src} onClick={() => openImage(src, `Отзыв клиента ${index + 1}`)}>
-                <img src={src} alt={`Отзыв клиента ${index + 1}`} loading="lazy" />
+              <button className="review-card" type="button" key={src} onClick={() => openImage(src, `Отзыв клиента ${index + 1}`)} data-reveal>
+                <img src={src} alt={`Отзыв клиента ${index + 1}`} loading="lazy" decoding="async" />
               </button>
             ))}
           </div>
         </section>
 
         <section className="section process-section" id="process">
-          <div className="section-heading compact-heading">
+          <div className="section-heading compact-heading" data-reveal>
             <h2>Понятный процесс работы</h2>
             <p>От первого обсуждения до установки на участке.</p>
           </div>
           <div className="process-grid">
             {process.map((item, index) => (
-              <article className="process-item" key={item.title}>
+              <article className="process-item" key={item.title} data-reveal>
                 <span className={`process-shape process-shape-${index + 1}`} aria-hidden="true" />
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
@@ -488,7 +522,7 @@ function App() {
         </section>
 
         <section className="section contact-section" id="contacts">
-          <div className="contact-copy">
+          <div className="contact-copy" data-reveal>
             <p className="eyebrow">Рассчитать стоимость</p>
             <h2>Обсудим вашу мангальную зону</h2>
             <p>Оставьте имя и телефон и выберите удобный мессенджер для связи с менеджером.</p>
@@ -499,7 +533,7 @@ function App() {
               </div>
             </div>
           </div>
-          <form className="lead-form" onSubmit={handleFormSubmit} noValidate>
+          <form className="lead-form" onSubmit={handleFormSubmit} noValidate data-reveal>
             <label htmlFor="name">Имя</label>
             <input
               id="name"
@@ -543,7 +577,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="site-footer">
+      <footer className="site-footer" data-reveal>
         <div>
           <a className="footer-logo-link" href="#top" aria-label="ЭлитСтори, на главную">
             <span className="footer-brand-name">ЭлитСтори</span>
