@@ -129,6 +129,24 @@ const projectBlocks = [
   },
 ];
 
+const videos = [
+  {
+    src: "/assets/videos/main-zone.mp4",
+    title: "Готовая мангальная зона",
+    variant: "featured",
+  },
+  {
+    src: "/assets/videos/detail-zone.mp4",
+    title: "Детали и комплектация",
+    variant: "portrait",
+  },
+  {
+    src: "/assets/videos/finished-zone.mp4",
+    title: "Зона в работе",
+    variant: "portrait",
+  },
+];
+
 const reviews = [
   "/assets/photos/reviews/yandex/review-01.jpg",
   "/assets/photos/reviews/yandex/review-02.jpg",
@@ -291,6 +309,7 @@ function App() {
             <div className="hero-note">
               <span>Проекты от 100 000 ₽</span>
               <span>Краснодарский край</span>
+              <span>Доставка по всей России</span>
             </div>
           </div>
           <div className="hero-media">
@@ -341,6 +360,24 @@ function App() {
                   <span>{work.text}</span>
                 </span>
               </button>
+            ))}
+          </div>
+        </section>
+
+        <section className="section video-section" id="video">
+          <div className="section-heading">
+            <p className="eyebrow">Видео наших работ</p>
+            <h2>Результат можно увидеть вживую</h2>
+            <p>Показываем готовые зоны, детали и качество исполнения в реальных видео.</p>
+          </div>
+          <div className="video-showcase">
+            {videos.map((video) => (
+              <figure className={`video-card video-card-${video.variant}`} key={video.src}>
+                <div className="video-frame">
+                  <video controls playsInline preload="metadata" src={video.src} />
+                </div>
+                <figcaption>{video.title}</figcaption>
+              </figure>
             ))}
           </div>
         </section>
